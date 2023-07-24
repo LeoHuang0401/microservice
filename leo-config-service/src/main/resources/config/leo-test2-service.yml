@@ -1,0 +1,20 @@
+server:
+  port: 8063
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+      
+springdoc:
+  packagesToScan: com.leo.springcloud
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

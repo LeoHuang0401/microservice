@@ -1,0 +1,49 @@
+server:
+  port: 8060
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: leo-test1-service
+        uri: lb://leo-test1-service
+        predicates:
+        - Path=/test1/**
+        filters:
+        - RewritePath=/test1/(?<path>.*), /$\{path}
+      - id: leo-test2-service
+        uri: lb://leo-test2-service
+        predicates:
+        - Path=/test2/**
+        filters:
+        - RewritePath=/test2/(?<path>.*), /$\{path}
+      - id: openapi
+        uri: http://localhost:${server.port}
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: test1
+        url: /v3/api-docs/test1
+      - name: test2
+        url: /v3/api-docs/test2
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://leo-eureka-service:8061/eureka/
+  instance:
+    hostname: leo-test1-service
+      
+springdoc:
+  packagesToScan: com.leo.springcloud
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans

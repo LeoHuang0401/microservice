@@ -9,8 +9,3 @@ spring:
     name: leo-test1-service
   config:
     import: "optional:configserver:http://localhost:8088"
-  datasource:
-    url: jdbc:oracle:thin:@//61.216.84.217:1534/ORCL
-    username: line
-    password: 123456
-    daiver-class-name: oracle.jdbc.OracleDriver

@@ -11,7 +11,7 @@
 ``leo-gateway-service`` - 使用 Spring Cloud Gateway 的 API 網關、搭配swagger-ui
 
 # API URL：
-## leo-test1-service
+### leo-test1-service
 - 查詢所有product資料
 ```
 /test1/orcl
@@ -20,6 +20,18 @@
 ```
 /test2/{productCategoryId}
 ```
+### leo-test2-service
+- 利用飲料種類productCategoryId關聯leo-test1-service使用``@FeignClient``(/test2/{productCategoryId})查找product資料
+```
+/test2/product/{productCategoryId}
+```
 
+### leo-gateway-service
+- swagger-ui畫面
+```
+http://localhost:8060/swagger-ui.html
+```
 
-啟動方式：Spring Boot啟動、部署到docker啟動(docker-compose.yml)
+# 啟動方式：
+Spring Boot啟動
+部署到docker啟動(docker-compose.yml)
